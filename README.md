@@ -1,13 +1,15 @@
 # Luka Companion — Android
 
-نسخة Android 2.6.21 متاحة الآن بتوقيع إنتاجي ثابت.
+Latest version: **2.6.22** (versionCode 282), Android 8.0+.
 
-[تحميل APK وآخر الإصدارات](https://github.com/nama19920-glitch/luka-android-releases/releases/latest)
+[Download the latest release](https://github.com/nama19920-glitch/luka-android-releases/releases/latest)
 
-Android 8.0 أو أحدث. ثبّت هذه النسخة مرة واحدة لتفعيل فحص التحديثات القادمة داخل التطبيق عند الفتح أو من الإعدادات. التنزيل والتثبيت بموافقتك.
+This repository contains public Android release files only. App source code and signing credentials remain private.
 
-هذا المستودع لتوزيع APK وملف التحديث فقط. كود التطبيق ومفتاح التوقيع محفوظان بصورة خاصة.
+2.6.22 fixes text contrast, adds a saved light/dark theme toggle, and separates update checks from shop requests with loading timeouts and retry messages.
 
-احتفظ بطريقة دخول حساباتك قبل الانتقال من نسخة تجريبية ذات توقيع مختلف. لا تحذف تطبيقك الحالي إذا رفض Android التحديث قبل ترتيب الانتقال.
+The APK uses the same production signing certificate as 2.6.21 and can update it without uninstalling. Earlier test-signed versions may require reinstalling.
+
+Update feed: https://github.com/nama19920-glitch/luka-android-releases/releases/latest/download/android-update.json
 
 Use code SK7 💜
