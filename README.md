@@ -1,15 +1,18 @@
-# Luka Companion — Android
+# Luka Companion — Android releases
 
-Latest version: **2.6.23** (versionCode 283), Android 8.0+.
+Official Android APK distribution for Luka Companion. Source code and signing keys remain private.
 
-[Download the latest release](https://github.com/nama19920-glitch/luka-android-releases/releases/latest)
+## Latest: 2.6.24 (284)
 
-This repository contains public Android release files only. App source code and signing credentials remain private.
+Requires Android 8 or newer. Install over the existing signed application without uninstalling to keep saved accounts.
 
-2.6.23 reads official shop cards and pricing before lazy images hydrate, displays the Epic store account balance independently of the inventory scan, and preserves the saved light/dark theme from 2.6.22.
+- Reads the verified official shop browser directly when page messaging is unavailable.
+- Displays V-Bucks from the official website only, without account-profile fallback.
+- Adds button press feedback and update download size, downloaded bytes, percentage, and verification status.
+- Preserves the purple dashboard, light/dark themes, saved-account tab, shop previews, ownership indicators, bundle contents and creator-code controls.
 
-The APK uses the same production signing certificate as 2.6.21 and 2.6.22 and can update them without uninstalling. Earlier test-signed versions may require reinstalling.
+Android build, lint, eight snapshot tests and interface fixtures passed. Live-account shop behavior still needs device verification. The download progress display works for future updates after installing 2.6.24.
 
-Update feed: https://github.com/nama19920-glitch/luka-android-releases/releases/latest/download/android-update.json
+The APK uses the same permanent production certificate as 2.6.21 onward. In-app updates validate the SHA-256, package, version and signing certificate before installation.
 
-Use code SK7 💜
+Download the APK from the latest release assets. `android-update.json` and `SHA256SUMS.txt` accompany every release.
