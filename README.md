@@ -1,19 +1,13 @@
 # Luka Companion — Android
 
-Official Android downloads and the in-app update feed. Use code **SK7**.
+نسخة Android 2.6.21 متاحة الآن بتوقيع إنتاجي ثابت.
 
-## Downloads
+[تحميل APK وآخر الإصدارات](https://github.com/nama19920-glitch/luka-android-releases/releases/latest)
 
-The first production release is being prepared. Download APK files only from published releases in this repository.
+Android 8.0 أو أحدث. ثبّت هذه النسخة مرة واحدة لتفعيل فحص التحديثات القادمة داخل التطبيق عند الفتح أو من الإعدادات. التنزيل والتثبيت بموافقتك.
 
-The Android app checks this channel on launch and from Settings. Downloading and installing a newer version requires your confirmation. Every APK is checked for package name, version, SHA-256 and the same signing certificate before installation.
+هذا المستودع لتوزيع APK وملف التحديث فقط. كود التطبيق ومفتاح التوقيع محفوظان بصورة خاصة.
 
-## Release files
+احتفظ بطريقة دخول حساباتك قبل الانتقال من نسخة تجريبية ذات توقيع مختلف. لا تحذف تطبيقك الحالي إذا رفض Android التحديث قبل ترتيب الانتقال.
 
-Each release contains the APK, `SHA256SUMS.txt` and `android-update.json`. The application source and signing key are kept private. This repository does not contain account information.
-
-Older test APKs may use a different signing certificate. They cannot be assumed to accept the first production build as an in-place update. Keep access to your Epic accounts before migrating; later production updates use the same permanent key.
-
----
-
-تنزيلات Luka Companion الرسمية للأندرويد. يفحص التطبيق التحديث عند الفتح، ويمكن الفحص يدوياً من الإعدادات. التنزيل والتثبيت بموافقتك. أول إصدار إنتاجي قيد التجهيز.
+Use code SK7 💜
