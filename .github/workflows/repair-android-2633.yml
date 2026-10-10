@@ -1,0 +1,83 @@
+name: Repair Android 2.6.33 update feed
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/repair-android-2633.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: android-release-feed
+  cancel-in-progress: false
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify release and download exact APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: nama19920-glitch/luka-android-releases
+        run: |
+          set -euo pipefail
+          mkdir -p before dist
+          gh api repos/$GH_REPO/releases/latest > release.json
+          python - <<'PY'
+          import json
+          r=json.load(open('release.json'))
+          assert r['tag_name']=='android-v2.6.33' and not r['draft'] and not r['prerelease'], 'Latest release changed; aborting'
+          a=next(a for a in r['assets'] if a['name']=='Luka-2.6.33-Android.apk')
+          assert a['digest']=='sha256:00444773e42608b5d37f7c6c16a38586eadee9956575574e73a21972b84415ef' and a['size']==2318489, 'APK changed; aborting'
+          PY
+          gh release download android-v2.6.33 --pattern 'android-update*.json' --dir before
+          gh release download android-v2.6.33 --pattern 'Luka-2.6.33-Android.apk' --dir dist
+      - name: Preserve previous feed
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-2633-feed-before-repair
+          path: before/
+          retention-days: 30
+          if-no-files-found: error
+      - name: Correct feed to match verified APK
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib
+          apk=pathlib.Path('dist/Luka-2.6.33-Android.apk')
+          digest=hashlib.sha256(apk.read_bytes()).hexdigest()
+          assert digest=='00444773e42608b5d37f7c6c16a38586eadee9956575574e73a21972b84415ef'
+          assert apk.stat().st_size==2318489
+          old=json.loads(pathlib.Path('before/android-update.json').read_text())
+          new={'packageName':'com.sk7.lukacompanion','version':'2.6.33','versionCode':293,
+               'url':'https://github.com/nama19920-glitch/luka-android-releases/releases/download/android-v2.6.33/Luka-2.6.33-Android.apk',
+               'sha256':digest,'sizeBytes':apk.stat().st_size,'notes':old.get('notes','Luka Android 2.6.33')}
+          for key in ['version','versionCode','url','sha256','sizeBytes']:
+              print(f'{key}: {old.get(key)} -> {new[key]}')
+          pathlib.Path('dist/android-update.json').write_text(json.dumps(new,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Publish repaired update feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: nama19920-glitch/luka-android-releases
+        run: |
+          set -euo pipefail
+          gh api repos/$GH_REPO/releases/latest --jq .tag_name | grep -Fx android-v2.6.33
+          gh release upload android-v2.6.33 dist/android-update.json --clobber
+      - name: Verify public update URL and advertised APK
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib,urllib.request,time
+          expected=json.loads(pathlib.Path('dist/android-update.json').read_text())
+          feed='https://github.com/nama19920-glitch/luka-android-releases/releases/latest/download/android-update.json'
+          for attempt in range(6):
+              request=urllib.request.Request(feed+'?verify=2633-'+str(time.time_ns()),headers={'User-Agent':'Luka-Android/2.6.31','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(request,timeout=30) as response:
+                  actual=json.load(response)
+              if actual==expected: break
+              if attempt==5: raise AssertionError('Public feed has not refreshed')
+              time.sleep(5)
+          with urllib.request.urlopen(actual['url'],timeout=30) as response:
+              content=response.read()
+          assert len(content)==actual['sizeBytes']
+          assert hashlib.sha256(content).hexdigest()==actual['sha256']
+          print('Public feed and APK match: version 2.6.33, versionCode 293.')
+          PY
