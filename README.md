@@ -2,16 +2,21 @@
 
 Official Android APK distribution. Source and signing keys remain private.
 
-## Latest: 2.6.32 (292)
+## Latest: 2.6.35 (306)
 
-Android 8+. Install over current production-signed versions (2.6.21+) without removing account data.
+[Download Luka 2.6.35 for Android](https://github.com/nama19920-glitch/luka-android-releases/releases/download/android-v2.6.35/Luka-2.6.35-Android.apk)
 
-System-bar insets and extra spacing protect top controls and bottom tabs. Home shows the selected account's verified official-shop wallet; shop preparation starts in the background. English digits, Sidekicks category, refreshed action labels and emojis, and Save the World / Coming Soon card.
+Android 8+. Install over the current production-signed version without removing the app or its saved accounts. The signing certificate is checked against the currently published 2.6.33 APK before publication.
 
-Notifications are requested once on first launch. Battery settings are offered optionally. App-private storage needs no storage permission. Background update checks may be delayed by power management.
+- Daily STW alerts with actual mission power, bundled map symbols, region names and reward rarity; V-Bucks rewards use Mythic styling.
+- Notifications when daily alert data changes, with duplicate prevention and a shortcut to the alert page.
+- Automatic shop refresh on launch and a refresh button beside the home V-Bucks wallet.
+- A blue V-Bucks balance bar stays visible while scrolling the item shop.
+- Custom vector icons, a dimmed account-linking wait screen with animated progress, and a language-change transition.
+- Empty daily quests show a clear message and disable daily login until the next reset.
 
-11 Node tests, Java navigation/cooldown checks, fixture UI regressions, signed release build and lint passed. The signed APK launched twice on an Android 14 emulator (run 38016620467); notification permission was granted for repeat-launch verification. Live account and physical-device behavior still need verification. No real purchases or gifts performed.
+The latest `android-update.json` feed offers this release inside the app. Background update notifications appear when the device performs its scheduled check; Android notification permissions and power management apply.
 
-Signing is unchanged. Legacy 1.4.0 uses a different unavailable debug key. Updates validate package, version, certificate and SHA-256.
+Validation covers 37 data tests, Java notification/navigation checks, Arabic/English UI fixtures, production signing, APK build/lint and Android 14 startup with notification-job scheduling. Fixture purchase/gift checks do not execute live transactions.
 
-Download the APK from latest release assets. android-update.json and SHA256SUMS.txt accompany every release.
+Every release includes its APK, `android-update.json` and `SHA256SUMS.txt`. The updater verifies package, version, installed signer and SHA-256 before installation.
