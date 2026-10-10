@@ -2,15 +2,15 @@
 
 Official Android APK distribution for Luka Companion. Source code and signing keys remain private.
 
-## Latest: 2.6.27 (287)
+## Latest: 2.6.28 (288)
 
-Requires Android 8 or newer. Install over the existing signed application without uninstalling to keep saved accounts.
+Android 8+. Install over the existing signed application without uninstalling to keep saved accounts.
 
-2.6.27 fixes the confirmed blocked www.fortnite.com/auth/login redirect during selected-account shop bootstrap. Exact trusted HTTPS authentication routes are allowed only during verification/bootstrap; the snapshot bridge remains restricted to official item-shop pages.
+2.6.28 honors the official shop's HTTP 429 Retry-After cooldown, blocks navigation/reconnect during that interval, stops failed-page scans and preserves the same account's loaded website wallet, ownership and cards on retry. No automatic retry is performed. The trusted authentication-route fix from 2.6.27 remains included.
 
-The app retains website-only V-Bucks, direct shop reads, button press animation, update download size/percentage, the purple dashboard, light/dark themes, account tabs, item previews, ownership indicators, bundle contents and creator-code controls.
+Retains the purple dashboard, light/dark themes, account tabs, item previews, bundle contents, creator controls, button feedback and update download size/progress. Wallet reads remain website-only.
 
-Android build, lint, ten Node tests, 15 Java navigation-policy assertions and interface fixtures passed. Live-account/device behavior still requires verification.
+Node tests, Java navigation/cooldown regressions, interface fixtures, Android build and lint passed. Live-device behavior requires verification.
 
 The APK uses the permanent production certificate from 2.6.21 onward. In-app updates validate SHA-256, package, version and signing certificate before installation.
 
