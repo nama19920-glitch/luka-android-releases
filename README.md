@@ -2,16 +2,18 @@
 
 Official Android APK distribution for Luka Companion. Source code and signing keys remain private.
 
-## Latest: 2.6.29 (289)
+## Latest: 2.6.30 (290)
 
 Android 8+. Updates current production-signed installations (2.6.21+).
 
-Fixes gift-picker Cancel independently of earlier confirmations. Reads Epic or console friend names with a labeled fallback when unavailable. Settings shows the version. Shop cards retain official New metadata; returning items are not marked new merely because they enter a fresh local cache.
+Successful official shop cards/previews clear stale shop and cooldown notices. Navigation restarts the verified reader after a failed page. Main-frame HTTP 429 still respects Retry-After without automatic network or transaction retries.
 
-Retains official website wallet, account-specific ownership, purple dashboard, light/dark themes, bundle contents, previews, creator controls, update download size/progress and HTTP 429 Retry-After cooldown without automatic retry.
+Centered version, clearer button borders and visible touch feedback in both themes. Enable update notifications in Settings and allow Android notification permission. A persisted background job checks the public release feed every six hours and notifies once per newer version. Delivery can be delayed by Android power management; notifications have not been tested on a physical handset.
 
-Node tests, Java navigation/cooldown regressions, UI fixtures including gift cancellation, Android release build and lint passed. No live gifting or purchase performed.
+Retains official website wallet, account-specific ownership, gift cancellation, Epic/console friend labels, New metadata, purple dashboard, light/dark themes, bundle contents, previews, creator controls and update download progress.
 
-Signing: uploaded Luka-Companion-1.4.0-Android.apk uses a different ephemeral Android Debug key. Its original private key is unavailable, so this release cannot update that APK in place. Do not uninstall before ensuring account access can be relinked. Production signing remains unchanged from 2.6.21 onward. In-app updates validate SHA-256, package, version and certificate.
+Eleven Node tests, Java navigation/cooldown checks, fixture UI regressions including status recovery, Android release build and lint passed on run 38012799533. No live gifting or purchase performed.
+
+Signing remains unchanged from 2.6.21 onward. Legacy 1.4.0 uses a different debug key whose original private key is unavailable and cannot be updated in place with this signer. In-app updates validate SHA-256, package, version and certificate.
 
 Download the APK from the latest release assets. android-update.json and SHA256SUMS.txt accompany every release.
