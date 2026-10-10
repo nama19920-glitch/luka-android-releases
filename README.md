@@ -2,18 +2,16 @@
 
 Official Android APK distribution for Luka Companion. Source code and signing keys remain private.
 
-## Latest: 2.6.30 (290)
+## Latest: 2.6.31 (291)
 
 Android 8+. Updates current production-signed installations (2.6.21+).
 
-Successful official shop cards/previews clear stale shop and cooldown notices. Navigation restarts the verified reader after a failed page. Main-frame HTTP 429 still respects Retry-After without automatic network or transaction retries.
+Fixes Android 14+ startup failure by declaring ACCESS_NETWORK_STATE for the network-constrained update job. Background job scheduling failures cannot prevent app startup. Install over the current version without removing application data.
 
-Centered version, clearer button borders and visible touch feedback in both themes. Enable update notifications in Settings and allow Android notification permission. A persisted background job checks the public release feed every six hours and notifies once per newer version. Delivery can be delayed by Android power management; notifications have not been tested on a physical handset.
+Retains official shop wallet, account-specific ownership, gifts, cancellation, bundle contents, previews, creator controls, themes, button feedback, centered version and download progress. Background update notifications remain optional and may be delayed by Android power management.
 
-Retains official website wallet, account-specific ownership, gift cancellation, Epic/console friend labels, New metadata, purple dashboard, light/dark themes, bundle contents, previews, creator controls and update download progress.
+Node tests, Java navigation/cooldown checks, fixture UI regressions, release build and lint passed. The production-signed APK launched twice on an Android 14 emulator and its update job scheduled successfully on run 38014629695. No live purchases or gifting performed; no physical-handset notification test.
 
-Eleven Node tests, Java navigation/cooldown checks, fixture UI regressions including status recovery, Android release build and lint passed on run 38012799533. No live gifting or purchase performed.
-
-Signing remains unchanged from 2.6.21 onward. Legacy 1.4.0 uses a different debug key whose original private key is unavailable and cannot be updated in place with this signer. In-app updates validate SHA-256, package, version and certificate.
+Signing remains unchanged from 2.6.21 onward. Legacy 1.4.0 uses a different debug key whose original private key is unavailable. In-app updates validate SHA-256, package, version and certificate.
 
 Download the APK from the latest release assets. android-update.json and SHA256SUMS.txt accompany every release.
